@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDG Group | Soluções Tecnológicas Premium</title>
+    
+    <!-- Google Analytics Placeholder -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <!-- Google Fonts: Montserrat para Títulos (Luxo/Moderno) e Inter para Texto Base -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (Layout Base) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: {
+                            400: '#F3E5AB',
+                            500: '#D4AF37', // Metallic Gold Base
+                            600: '#AA771C',
+                        },
+                        black: {
+                            DEFAULT: '#050505',
+                            card: '#0a0a0a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Heavy CSS for Premium Black & Gold Theme -->
+    <style>
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F3E5AB;
+            --gold-dark: #AA771C;
+            --bg-black: #050505;
+            --card-black: #0F0F0F;
+            --gradient-gold: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: #E0E0E0;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.04) 0%, transparent 50%);
+        }
+
+        /* Typography Highlights */
+        .text-gold-gradient {
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        /* Interactive Buttons */
+        .btn-premium {
+            background: var(--gradient-gold);
+            color: #000;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border: 1px solid transparent;
+        }
+
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: linear-gradient(135deg, #AA771C, #FBF5B7, #B38728, #FCF6BA, #BF953F);
+            z-index: -1;
+            transition: opacity 0.4s linear;
+            opacity: 0;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            border: 1px solid var(--gold-light);
+        }
+
+        .btn-premium:hover::before {
+            opacity: 1;
+        }
+
+        /* Glassmorphism Header */
+        .header-glass {
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        /* Service Cards Premium Hover */
+        .service-card {
+            background: var(--card-black);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+            transition: box-shadow 0.5s ease;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold-primary);
+            background: #000;
+        }
+
+        .service-card:hover::after {
+            box-shadow: 0 15px 40px -10px rgba(212, 175, 55, 0.3);
+        }
+
+        .card-icon-wrapper {
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .card-icon-wrapper {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        /* Grid Background Pattern for Hero */
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Scroll Animations (Intersection Observer) */
+        .hidden-scroll {
+            opacity: 0;
+            filter: blur(5px);
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        
+        @media(prefers-reduced-motion) {
+            .hidden-scroll {
+                transition: none;
+                opacity: 1;
+                filter: blur(0);
+                transform: translateY(0);
+            }
+        }
+
+        .show-scroll {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+
+        /* Delay utilities for staggered animations */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-dark);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold-500 selection:text-black">
+
+    <!-- Navigation -->
+    <header class="header-glass fixed w-full top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="font-heading font-extrabold text-2xl tracking-wider group flex items-center gap-2">
+                <span class="text-white group-hover:text-gold-400 transition-colors">MDG</span>
+                <span class="text-gold-gradient">GROUP</span>
+            </a>
+            
+            <nav class="hidden md:flex gap-8 items-center">
+                <a href="#solucoes" class="text-sm font-medium text-gray-300 hover:text-gold-400 transition-colors">Soluções</a>
+                <a href="#sobre" class="text-sm font-medium text-gray-300 hover:text-gold-400 transition-colors">Sobre o Know-How</a>
+                <a href="#contato" class="btn-premium px-6 py-2 rounded-full text-xs">Iniciar Projeto</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gold-500 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="hero-grid"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black-DEFAULT z-0"></div>
+        
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center hidden-scroll">
+            <div class="inline-block mb-4 px-4 py-1 rounded-full border border-gold-500/30 bg-gold-500/10 backdrop-blur-sm hidden-scroll delay-100">
+                <span class="text-gold-400 text-sm font-semibold tracking-widest uppercase">Consultoria B2B & Desenvolvimento</span>
+            </div>
+            <h1 class="font-heading font-extrabold text-5xl md:text-7xl lg:text-8xl leading-tight mb-6 hidden-scroll delay-200">
+                Tecnologia. Dados.<br> 
+                <span class="text-gold-gradient drop-shadow-2xl">Resultados.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-3xl mx-auto font-light leading-relaxed hidden-scroll delay-300">
+                Transformamos o seu negócio centralizando inteligência. Da estruturação de bancos de dados à criação de sistemas complexos, 
+                entregamos <strong class="text-white font-semibold">qualquer solução tecnológica</strong> utilizando automação profunda e Business Intelligence.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center hidden-scroll delay-400">
+                <a href="#contato" class="btn-premium px-10 py-4 rounded-full text-lg shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+                    Descubra o Futuro do seu Negócio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soluções Section -->
+    <section id="solucoes" class="py-24 relative bg-black-DEFAULT z-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 hidden-scroll">
+                <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4">Nossas <span class="text-gold-gradient">Soluções</span></h2>
+                <div class="h-1 w-24 bg-gradient-to-r from-gold-600 to-gold-400 mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Soluções de ponta a ponta. Dominamos o fluxo dos dados e a interface que conecta sua empresa ao sucesso.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                
+                <!-- Card 1: Full-Stack -->
+                <div class="service-card p-10 rounded-2xl hidden-scroll">
+                    <div class="card-icon-wrapper w-16 h-16 rounded-xl bg-gold-500/10 flex items-center justify-center mb-6 border border-gold-500/20">
+                        <svg class="w-8 h-8 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-white mb-3">Desenvolvimento Full-Stack & APIs</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Criação de sites de altíssimo desempenho, portais corporativos, desenvolvimento em Node.js, arquitetura de APIs RESTful estruturadas e bancos de dados robustos (MySQL, PostgreSQL). A base sólida para sua operação digital.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gold-500"></div> Web Sites Premium</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gold-500"></div> APIs Integradas</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gold-500"></div> Arquitetura de Banco de Dados</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Automação & RPA -->
+                <div class="service-card p-10 rounded-2xl hidden-scroll delay-100">
+                    <div class="card-icon-wrapper w-16 h-16 rounded-xl bg-gold-500/10 flex items-center justify-center mb-6 border border-gold-500/20">
+                        <svg class="w-8 h-8 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-white mb-3">Automação & RPA</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Elimine o trabalho manual. Construímos robôs de automação (RPA) e fluxos de trabalho inteligentes que operam 24/7. Mais agilidade, zero erros humanos e escalabilidade imediata para a sua rotina operacional.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gold-500"></div> Robôs de Automação</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gold-500"></div> Workflows Inteligentes</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gold-500"></div> Eficiência Extrema</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Business Intelligence -->
+                <div class="service-card p-10 rounded-2xl hidden-scroll">
+                    <div class="card-icon-wrapper w-16 h-16 rounded-xl bg-gold-500/10 flex items-center justify-center mb-6 border border-gold-500/20">
+                        <svg class="w-8 h-8 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-white mb-3">Business Intelligence & Dados</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Transformamos um caos de informações em decisões cristalinas. Organização complexa de dados, limpeza, e desenvolvimento de Dashboards dinâmicos em tempo real que mapeiam a saúde e as oportunidades do seu negócio.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gold-500"></div> Dashboards Dinâmicos</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gold-500"></div> Organização e Estruturação</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gold-500"></div> Decisões Data-Driven</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4: Gestão de ERP -->
+                <div class="service-card p-10 rounded-2xl hidden-scroll delay-100">
+                    <div class="card-icon-wrapper w-16 h-16 rounded-xl bg-gold-500/10 flex items-center justify-center mb-6 border border-gold-500/20">
+                        <svg class="w-8 h-8 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-white mb-3">Gestão e Implantação de ERP</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        O coração sistêmico da sua empresa configurado com perfeição. Cuidamos de ponta a ponta da gestão de ERP, realizando implementações robustas e integrações complexas com outras ferramentas e APIs nativas.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gold-500"></div> Implementação Segura</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gold-500"></div> Integrações Avançadas</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-gold-500"></div> Suporte e Gestão Unificada</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nós Section -->
+    <section id="sobre" class="py-24 relative bg-[#020202] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="hidden-scroll">
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6">O Know-How que Transforma <span class="text-gold-gradient">Qualquer Desafio</span></h2>
+                    <div class="space-y-6 text-gray-400 text-lg leading-relaxed">
+                        <p>
+                            No <strong>MDG Group</strong>, não acreditamos em pacotes engessados. Acreditamos no poder do conhecimento combinado. Nossa força matriz vem da união de mentes especialistas prontas para resolver problemas complexos.
+                        </p>
+                        <p>
+                            De um lado, a visão precisa de desenvolvimento, infraestrutura web e automações implacáveis. Do outro, a mente analítica especializada em Business Intelligence revelando padrões invisíveis, aliada ao domínio absoluto em orquestração e gestão de ERP.
+                        </p>
+                        <div class="p-6 mt-8 rounded-xl border border-gold-500/20 bg-black-card relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-gold-500/10 rounded-bl-full filter blur-xl"></div>
+                            <h4 class="font-heading text-white text-xl font-semibold mb-2 flex items-center gap-3">
+                                <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                Basicamente, Qualquer Solução Tecnológica
+                            </h4>
+                            <p class="text-sm text-gray-300">
+                                Se envolve tecnologia, lógica, dados ou otimização de tempo, o MDG Group projeta, desenvolbra e executa em alto padrão.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative hidden-scroll delay-200">
+                    <div class="absolute inset-0 bg-gradient-to-r from-gold-500/10 to-transparent rounded-2xl filter blur-3xl transform rotate-3"></div>
+                    <div class="relative border border-gold-500/20 rounded-2xl p-8 bg-black/50 backdrop-blur-sm overflow-hidden">
+                        <div class="absolute -right-10 -top-10 text-gold-500/5">
+                            <svg class="w-64 h-64" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0L15.5 8.5L24 12L15.5 15.5L12 24L8.5 15.5L0 12L8.5 8.5L12 0Z"></path></svg>
+                        </div>
+                        <div class="grid grid-cols-2 gap-6 relative z-10">
+                            <div class="text-center p-6 border border-white/5 rounded-xl bg-white/5 hover:border-gold-500/50 transition-colors">
+                                <h5 class="text-3xl font-heading font-bold text-gold-400 mb-2">+10k</h5>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest">Horas de Automação</p>
+                            </div>
+                            <div class="text-center p-6 border border-white/5 rounded-xl bg-white/5 hover:border-gold-500/50 transition-colors">
+                                <h5 class="text-3xl font-heading font-bold text-gold-400 mb-2">100%</h5>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest">Foco em Dados</p>
+                            </div>
+                            <div class="text-center p-6 border border-white/5 rounded-xl bg-white/5 hover:border-gold-500/50 transition-colors">
+                                <h5 class="text-3xl font-heading font-bold text-gold-400 mb-2">API</h5>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest">Integrações Nativas</p>
+                            </div>
+                            <div class="text-center p-6 border border-white/5 rounded-xl bg-white/5 hover:border-gold-500/50 transition-colors">
+                                <h5 class="text-3xl font-heading font-bold text-gold-400 mb-2">BI</h5>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest">Análise Preditiva</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action / Footer -->
+    <footer id="contato" class="relative bg-black-DEFAULT pt-20 pb-10 border-t border-gold-500/20 overflow-hidden">
+        <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-500/50 to-transparent"></div>
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10 hidden-scroll">
+            <h2 class="font-heading text-3xl md:text-5xl font-bold mb-6">Pronto para elevar o nível da sua operação?</h2>
+            <p class="text-gray-400 mb-10 text-lg">Deixe a complexidade com a gente. Focamos na tecnologia para você focar nos resultados.</p>
+            <a href="mailto:contato@mdggroup.com" class="btn-premium inline-block px-12 py-5 rounded-full text-lg shadow-[0_0_30px_rgba(212,175,55,0.2)]">
+                Fale com o MDG Group
+            </a>
+            
+            <div class="mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="font-heading font-bold text-xl flex items-center gap-2">
+                    <span class="text-white">MDG</span><span class="text-gold-500">GROUP</span>
+                </div>
+                <p class="text-gray-500 text-sm">© 2026 MDG Group. Todos os direitos reservados. Excelência Tecnológica.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-gray-400 hover:text-gold-400 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gold-400 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Intersection Observer para animações de Scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show-scroll');
+                        observer.unobserve(entry.target); // Anima apenas uma vez
+                    }
+                });
+            }, observerOptions);
+
+            const hiddenElements = document.querySelectorAll('.hidden-scroll');
+            hiddenElements.forEach((el) => observer.observe(el));
+
+            // Efeito de Header no Scroll
+            const header = document.querySelector('.header-glass');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.style.background = 'rgba(5, 5, 5, 0.95)';
+                    header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
+                } else {
+                    header.style.background = 'rgba(5, 5, 5, 0.85)';
+                    header.style.boxShadow = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
