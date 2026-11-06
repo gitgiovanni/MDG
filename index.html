@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MDG Group | Soluções Tecnológicas Premium</title>
     
-    <!-- Google Tag -->
+    <!-- Google Tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-MPGHL9HT"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -14,12 +14,12 @@
       gtag('config', 'GTM-MPGHL9HT');
     </script>
 
-    <!-- Google Fonts: Montserrat para Títulos (Luxo/Moderno) e Inter para Texto Base -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS (Layout Base) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,7 +32,7 @@
                     colors: {
                         gold: {
                             400: '#F3E5AB',
-                            500: '#D4AF37', // Metallic Gold Base
+                            500: '#D4AF37',
                             600: '#AA771C',
                         },
                         black: {
@@ -65,7 +65,6 @@
                 radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.04) 0%, transparent 50%);
         }
 
-        /* Typography Highlights */
         .text-gold-gradient {
             background: var(--gradient-gold);
             -webkit-background-clip: text;
@@ -75,7 +74,6 @@
             display: inline-block;
         }
 
-        /* Interactive Buttons */
         .btn-premium {
             background: var(--gradient-gold);
             color: #000;
@@ -111,14 +109,12 @@
             opacity: 1;
         }
 
-        /* Glassmorphism Header */
         .header-glass {
             background: rgba(5, 5, 5, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        /* Service Cards Premium Hover */
         .service-card {
             background: var(--card-black);
             border: 1px solid rgba(212, 175, 55, 0.15);
@@ -156,7 +152,6 @@
             transform: scale(1.15) rotate(5deg);
         }
 
-        /* Grid Background Pattern for Hero */
         .hero-grid {
             position: absolute;
             inset: 0;
@@ -170,7 +165,6 @@
             pointer-events: none;
         }
 
-        /* Scroll Animations (Intersection Observer) */
         .hidden-scroll {
             opacity: 0;
             filter: blur(5px);
@@ -193,13 +187,11 @@
             transform: translateY(0);
         }
 
-        /* Delay utilities for staggered animations */
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
         .delay-300 { transition-delay: 300ms; }
         .delay-400 { transition-delay: 400ms; }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -217,7 +209,7 @@
 </head>
 <body class="antialiased selection:bg-gold-500 selection:text-black">
 
-    <!-- Navigation -->
+    <!-- Header -->
     <header class="header-glass fixed w-full top-0 z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="font-heading font-extrabold text-2xl tracking-wider group flex items-center gap-2">
@@ -231,7 +223,6 @@
                 <a href="#contato" class="btn-premium px-6 py-2 rounded-full text-xs">Iniciar Projeto</a>
             </nav>
 
-            <!-- Mobile Menu Button -->
             <button class="md:hidden text-gold-500 focus:outline-none">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
@@ -406,7 +397,7 @@
         </div>
     </section>
 
-    <!-- Call to Action / Footer -->
+    <!-- Footer / Contact Section -->
     <footer id="contato" class="relative bg-black-DEFAULT pt-20 pb-10 border-t border-gold-500/20 overflow-hidden">
         <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-500/50 to-transparent"></div>
         <div class="max-w-5xl mx-auto px-6 text-center relative z-10 hidden-scroll">
@@ -433,10 +424,17 @@
         </div>
     </footer>
 
-    <!-- Interactive Scripts -->
+    <!-- Interactive Scripts & GA4 Custom Events -->
     <script>
+        // Helper function to safely send custom events to GA4
+        function trackGAEvent(eventName, params = {}) {
+            if (typeof gtag === 'function') {
+                gtag('event', eventName, params);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            // Intersection Observer para animações de Scroll
+            // 1. Intersection Observer for Scroll Animations
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -447,7 +445,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('show-scroll');
-                        observer.unobserve(entry.target); // Anima apenas uma vez
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
@@ -455,7 +453,7 @@
             const hiddenElements = document.querySelectorAll('.hidden-scroll');
             hiddenElements.forEach((el) => observer.observe(el));
 
-            // Efeito de Header no Scroll
+            // 2. Header Effect on Scroll
             const header = document.querySelector('.header-glass');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
@@ -465,6 +463,36 @@
                     header.style.background = 'rgba(5, 5, 5, 0.85)';
                     header.style.boxShadow = 'none';
                 }
+            });
+
+            // 3. Track CTA Button Clicks
+            document.querySelectorAll('.btn-premium').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    trackGAEvent('click_cta', {
+                        button_name: e.target.innerText.trim(),
+                        page_location: window.location.href
+                    });
+                });
+            });
+
+            // 4. Track Hover on Service Cards
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const serviceTitle = card.querySelector('h3')?.innerText || 'Serviço';
+                    trackGAEvent('view_service_detail', {
+                        service_name: serviceTitle
+                    });
+                });
+            });
+
+            // 5. Track Email / Direct Contact Clicks as Lead Generation
+            document.querySelectorAll('a[href^="mailto:"]').forEach(mailBtn => {
+                mailBtn.addEventListener('click', () => {
+                    trackGAEvent('generate_lead', {
+                        method: 'Email',
+                        contact_target: mailBtn.getAttribute('href')
+                    });
+                });
             });
         });
     </script>
